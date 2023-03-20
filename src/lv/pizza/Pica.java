@@ -18,6 +18,119 @@ public class Pica {
 	 		}catch(Exception e) {
 	 			JOptionPane.showMessageDialog(null, "Kļūda ierakstot datus failā", "Kļūda", JOptionPane.ERROR_MESSAGE);
 	 		}
+	 	}
+	 		 static double izveidotPasutijumu(boolean otraReize) {
+	 		   	double summa = 0;
+	 		   	boolean parbaudeVardu = false;
+	 			boolean parbaudeNumuru = false;
+	 			boolean parbaudeAdrese = false;
+	 			boolean parbaudeDaudzumu = false;
+	 			/*
+	 			 * Vards
+	 			 */
+	 			if(!otraReize) {
+					String vards;
+					do{
+						 vards =  JOptionPane.showInputDialog("Ievadiet savu vārdu: ");
+						if( vards.length()>=3 && vards.length()<=11){
+							 JOptionPane.showMessageDialog(null, "Jūsu vards : " + vards + "korrekti ievadīts .", null, JOptionPane.INFORMATION_MESSAGE );
+							 parbaudeVardu=true;
+						}else {
+							JOptionPane.showMessageDialog(null, "Nepareizi ievadīji vārdu!", "Kļūda",JOptionPane.ERROR_MESSAGE);
+						}
+					}while(!parbaudeVardu);
+					
+					writeFile("Vārds: "+vards);
+					
+	 			/*
+				 * Adrese
+				 */
+				String adrese;
+				do{
+					  adrese = JOptionPane.showInputDialog("Ievadiet adrese: ");
+					if( adrese.length()>=4 && adrese.length()<=15){
+						 JOptionPane.showMessageDialog(null, "Jūsu adrese : " + adrese + "korrekti ievadīts .", null, JOptionPane.INFORMATION_MESSAGE );
+						 parbaudeAdrese=true;
+					}else {
+						JOptionPane.showMessageDialog(null, "Nepareizi ievadīji vārdu!", "Kļūda",JOptionPane.ERROR_MESSAGE);
+					}
+				}while(!parbaudeAdrese);
+				
+				writeFile("Adrese: "+adrese);
+				
+				/*
+				 * numurs
+				 */
+				String talrunis;
+				do{
+					talrunis = JOptionPane.showInputDialog("Ievadiet savu numuru: ");
+					if( talrunis.length()==8){
+						 JOptionPane.showMessageDialog(null, "Jūsu numurs : " + talrunis + "korrekti ievadīts .", null, JOptionPane.INFORMATION_MESSAGE );
+						 parbaudeNumuru=true;
+					}else {
+						JOptionPane.showMessageDialog(null, "Nepareizi ievadīji numuru!", "Kļūda",JOptionPane.ERROR_MESSAGE);
+					}
+				}while(!parbaudeNumuru);
+				
+				writeFile("Talr. numurs: "+talrunis+"\n\nPasūtījums:");
+				
+			}
+			
+			/*
+			 * Izvelies picu
+			 */
+			String izveletaPica = (String) JOptionPane.showInputDialog(null, "Izvēlies picu", "Izvēle", JOptionPane.QUESTION_MESSAGE, null, pica, pica[0]);
+			int Index = Arrays.asList(pica).indexOf(izveletaPica);
+			
+			summa += picasCenas[Index];
+			
+			writeFile(izveletaPica);
+			/*
+			 * izvelies izmeru
+			 */
+			String izveletaisIzmers = (String) JOptionPane.showInputDialog(null, "Izvēlies izmēru", "Izmērs",JOptionPane.QUESTION_MESSAGE, null, izmers, izmers[0]);
+			Index = Arrays.asList(izmers).indexOf(izveletaisIzmers);
+			summa += izmeraCenas[Index];
+			
+			writeFile("izmērs: "+izveletaisIzmers);
+			/*
+			 * daudzums
+			 */
+			String picasDaudzums;
+			do{
+				 picasDaudzums = JOptionPane.showInputDialog
+						("Cik picas jūs gribat iegādāties?");
+				if(picasDaudzums.length()<6 && picasDaudzums.length()>0){
+					JOptionPane.showMessageDialog(null,"Jūsu daudzums: "+picasDaudzums
+							,null,JOptionPane.INFORMATION_MESSAGE );
+					parbaudeDaudzumu = true;
+				}else{
+					JOptionPane.showMessageDialog(null, "Tik izvediot picas nedrīkst!",null,
+	        				JOptionPane.ERROR_MESSAGE);
+				}
+			}while(!parbaudeDaudzumu);
+			writeFile("Daudzums: "+picasDaudzums);
+			
+			/*
+			 * merces
+			 */
+			String izveletaMerce, izvele;
+			writeFile("Mērces:");
+			do {
+				izveletaMerce = (String)JOptionPane.showInputDialog(null,"Izvēlies mērci:", "Mērces", JOptionPane.QUESTION_MESSAGE, null, merce, merce[0]);
+				Index = Arrays.asList(merce).indexOf(izveletaMerce);
+				summa += merceCenas[Index];
+				/*****************************************
+				 * ИСПРАВИТЬ  
+				 **************************************/
+				writeFile(izveletaMerce +" "+ merceCenas + " €");
+				do {
+					izvele = JOptionPane.showInputDialog("Pievienot vēl kaut kadu mērci? (y/n)");					
+				}while(!izvele.equalsIgnoreCase("y") && !izvele.equalsIgnoreCase("n"));
+			}while(!izvele.equalsIgnoreCase("n"));
+						
+			return summa *= Integer.parseInt(picasDaudzums);
+	   }
 	 		static String izmers [] = {"Maza-20 cm(+1,00 eiro)", "Vidēja-30 cm(+3,00 eiro)", "Liela-50 cm(+3,50 eiro)"};
 		   	static String pica[]= {"Margarita-9,00 eiro", "Peperoni-13,00 eiro", "Studentu piza-12,00 eiro", "Chilli pizza-11,00 eiro"};
 		   	static String merce [] = {"Kečups", "Hot chilli", "Majonēze"};
