@@ -1,6 +1,7 @@
 
 package lv.pizza;
 import javax.swing.JOptionPane;
+
 import java.io.BufferedReader;
 import java.io.FileReader;
 import java.io.FileWriter;
@@ -33,7 +34,7 @@ public class Pica {
 					do{
 						 vards =  JOptionPane.showInputDialog("Ievadiet savu vārdu: ");
 						if( vards.length()>=3 && vards.length()<=11){
-							 JOptionPane.showMessageDialog(null, "Jūsu vards : " + vards + "korrekti ievadīts .", null, JOptionPane.INFORMATION_MESSAGE );
+							 JOptionPane.showMessageDialog(null, "Jūsu vards : " + vards + " korrekti ievadīts .", null, JOptionPane.INFORMATION_MESSAGE );
 							 parbaudeVardu=true;
 						}else {
 							JOptionPane.showMessageDialog(null, "Nepareizi ievadīji vārdu!", "Kļūda",JOptionPane.ERROR_MESSAGE);
@@ -49,7 +50,7 @@ public class Pica {
 				do{
 					  adrese = JOptionPane.showInputDialog("Ievadiet adrese: ");
 					if( adrese.length()>=4 && adrese.length()<=15){
-						 JOptionPane.showMessageDialog(null, "Jūsu adrese : " + adrese + "korrekti ievadīts .", null, JOptionPane.INFORMATION_MESSAGE );
+						 JOptionPane.showMessageDialog(null, "Jūsu adrese : " + adrese + " korrekti ievadīts .", null, JOptionPane.INFORMATION_MESSAGE );
 						 parbaudeAdrese=true;
 					}else {
 						JOptionPane.showMessageDialog(null, "Nepareizi ievadīji vārdu!", "Kļūda",JOptionPane.ERROR_MESSAGE);
@@ -65,7 +66,7 @@ public class Pica {
 				do{
 					talrunis = JOptionPane.showInputDialog("Ievadiet savu numuru: ");
 					if( talrunis.length()==8){
-						 JOptionPane.showMessageDialog(null, "Jūsu numurs : " + talrunis + "korrekti ievadīts .", null, JOptionPane.INFORMATION_MESSAGE );
+						 JOptionPane.showMessageDialog(null, "Jūsu numurs : " + talrunis + " korrekti ievadīts .", null, JOptionPane.INFORMATION_MESSAGE );
 						 parbaudeNumuru=true;
 					}else {
 						JOptionPane.showMessageDialog(null, "Nepareizi ievadīji numuru!", "Kļūda",JOptionPane.ERROR_MESSAGE);
@@ -120,10 +121,7 @@ public class Pica {
 				izveletaMerce = (String)JOptionPane.showInputDialog(null,"Izvēlies mērci:", "Mērces", JOptionPane.QUESTION_MESSAGE, null, merce, merce[0]);
 				Index = Arrays.asList(merce).indexOf(izveletaMerce);
 				summa += merceCenas[Index];
-				/*****************************************
-				 * ИСПРАВИТЬ  
-				 **************************************/
-				writeFile(izveletaMerce +" "+ merceCenas + " €");
+				writeFile(izveletaMerce +" "+ merceCenas );
 				do {
 					izvele = JOptionPane.showInputDialog("Pievienot vēl kaut kadu mērci? (y/n)");					
 				}while(!izvele.equalsIgnoreCase("y") && !izvele.equalsIgnoreCase("n"));
@@ -133,7 +131,7 @@ public class Pica {
 	   }
 	 		static String izmers [] = {"Maza-20 cm(+1,00 eiro)", "Vidēja-30 cm(+3,00 eiro)", "Liela-50 cm(+3,50 eiro)"};
 		   	static String pica[]= {"Margarita-9,00 eiro", "Peperoni-13,00 eiro", "Studentu piza-12,00 eiro", "Chilli pizza-11,00 eiro"};
-		   	static String merce [] = {"Kečups", "Hot chilli", "Majonēze"};
+		   	static String merce [] = {"Kečups-0,85", "Hot chilli-1,00", "Majonēze-0,60"};
 		   	static double picasCenas[]={9.00, 13.00, 12.00, 11.00};
 			static double izmeraCenas[]={1.00, 3.00, 3.50};
 			static double merceCenas[]={0.85, 1.00, 0.60};
@@ -147,13 +145,13 @@ public class Pica {
 				double summa = 0;
 				
 				do{
-					izvele = JOptionPane.showInputDialog("Izvēle-Apskatīt picas| "+
-							"Pasūtījums-Izveidot pasūtījumu | "+ "Informācija-Paskatīties informāciju par pasūtījumu |"+" stop-Apturēt programmu ");
+					izvele = JOptionPane.showInputDialog("1-Apskatīt picas| "+
+							"2-Izveidot pasūtījumu | "+ "3-Paskatīties informāciju par pasūtījumu |"+" 4-Apturēt programmu ");
 					/*
 					 * Darbibas
 					 */
 					switch(izvele){
-					case "Izvēle":
+					case "1":
 //						JOptionPane.showInputDialog(null, "Izvēlies picu", "Izvēle", 
 //								JOptionPane.QUESTION_MESSAGE, null, pica, pica[0]);
 						String str = "";
@@ -170,7 +168,7 @@ public class Pica {
 						}
 						JOptionPane.showMessageDialog(null, "Ēdienkarte:\n"+str, "Ēdienkarte", JOptionPane.INFORMATION_MESSAGE);
 						break;
-					case "Pasūtījums": //pasutit
+					case "2": //pasutit
 						summa = izveidotPasutijumu(false);				
 						JOptionPane.showMessageDialog(null, "Summa = "+summa);
 						do {
@@ -183,10 +181,10 @@ public class Pica {
 						JOptionPane.showMessageDialog(null, "Summa = "+summa);
 						
 						break;
-					case "Informācija":
+					case "3":
 						readFile();
 						break;
-					case "stop":
+					case "4":
 						JOptionPane.showMessageDialog(null, "Programma ir apturēta!", "Message",
 								JOptionPane.INFORMATION_MESSAGE);
 						break;
@@ -194,7 +192,7 @@ public class Pica {
 								JOptionPane.WARNING_MESSAGE);
 					}
 					
-				}while(!izvele.equals("stop"));
+				}while(!izvele.equals("4"));
 
 			}
 			

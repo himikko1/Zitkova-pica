@@ -16,3 +16,27 @@ Mērces:
 Kečups [D@6ed3ef1 €
 Summa: 38.55
 
+Vārds: anna
+Adrese: adaqwdad
+Talr. numurs: 22222222
+
+Pasūtījums:
+Margarita-9,00 eiro
+izmērs: Maza-20 cm(+1,00 eiro)
+Daudzums: 1
+Mērces:
+Kečups-0,85 [D@6ed3ef1
+Summa: 10.85
+
+Vārds: anna
+Adrese: celmu 1
+Talr. numurs: 25963502
+
+Pasūtījums:
+Margarita-9,00 eiro
+izmērs: Maza-20 cm(+1,00 eiro)
+Daudzums: 1
+Mērces:
+Kečups-0,85 [D@4d591d15
+Summa: 10.85
+
