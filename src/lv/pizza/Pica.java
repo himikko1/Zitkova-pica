@@ -1,15 +1,18 @@
 
 package lv.pizza;
-import javax.swing.JOptionPane;
-
 import java.io.BufferedReader;
 import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.PrintWriter;
+import java.util.ArrayList;
 import java.util.Arrays;
+
+import javax.swing.JOptionPane;
 
 
 public class Pica {
+	//Izveidoju picas sarakstu 
+	static ArrayList<pica1>PicuSaraksts = new ArrayList<pica1>();
 	 	static void writeFile(String line) {
 	 		try {
 	 			FileWriter fw = new FileWriter("fails.txt", true);
@@ -126,7 +129,7 @@ public class Pica {
 					izvele = JOptionPane.showInputDialog("Pievienot vēl kaut kadu mērci? (y/n)");					
 				}while(!izvele.equalsIgnoreCase("y") && !izvele.equalsIgnoreCase("n"));
 			}while(!izvele.equalsIgnoreCase("n"));
-						
+			PicuSaraksts.add(new pica1(izveletaPica, Integer.parseInt(izveletaisIzmers),summa));			
 			return summa *= Integer.parseInt(picasDaudzums);
 	   }
 	 		static String izmers [] = {"Maza-20 cm(+1,00 eiro)", "Vidēja-30 cm(+3,00 eiro)", "Liela-50 cm(+3,50 eiro)"};
